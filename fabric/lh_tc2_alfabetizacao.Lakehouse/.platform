@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "lh_tc2_alfabetizacao"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1a2c5d18-49a2-a06e-4bd8-197f017d68f6"
+  }
+}

@@ -1,0 +1,114 @@
+table gold_indicador_municipio
+	lineageTag: 2133907a-3d1e-472a-a2ee-4a94ae688890
+	sourceLineageTag: [dbo].[gold_indicador_municipio]
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 926d5132-ef9f-4ed2-864d-9673543669a1
+		sourceLineageTag: ano
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_municipio
+		dataType: string
+		lineageTag: f58b193d-63f5-40e9-a057-c000b24cfef0
+		sourceLineageTag: id_municipio
+		summarizeBy: none
+		sourceColumn: id_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_municipio
+		dataType: string
+		lineageTag: 5b09af51-04b9-47f9-a528-d8462fa22555
+		sourceLineageTag: nome_municipio
+		summarizeBy: none
+		sourceColumn: nome_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column sigla_uf
+		dataType: string
+		lineageTag: c535e68d-d678-4b11-8e5c-a52342bdcb01
+		sourceLineageTag: sigla_uf
+		summarizeBy: none
+		sourceColumn: sigla_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_uf
+		dataType: string
+		lineageTag: 52503221-79f1-4c48-994e-e3e6b4d661ca
+		sourceLineageTag: nome_uf
+		summarizeBy: none
+		sourceColumn: nome_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_regiao
+		dataType: string
+		lineageTag: dfc5c4ef-c1b8-4f55-a017-6db5a87a6fda
+		sourceLineageTag: nome_regiao
+		summarizeBy: none
+		sourceColumn: nome_regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column serie
+		dataType: string
+		lineageTag: d22a7479-acba-4226-8859-d0ba1e54962d
+		sourceLineageTag: serie
+		summarizeBy: none
+		sourceColumn: serie
+
+		annotation SummarizationSetBy = Automatic
+
+	column rede
+		dataType: string
+		lineageTag: 2661e288-6152-4516-959e-4b2d21b49465
+		sourceLineageTag: rede
+		summarizeBy: none
+		sourceColumn: rede
+
+		annotation SummarizationSetBy = Automatic
+
+	column rede_descricao
+		dataType: string
+		lineageTag: f32cf925-07a4-45f0-89ce-3244d2b0bf10
+		sourceLineageTag: rede_descricao
+		summarizeBy: none
+		sourceColumn: rede_descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxa_alfabetizacao
+		dataType: double
+		lineageTag: af9f8882-421c-47f5-80eb-77e942fc310f
+		sourceLineageTag: taxa_alfabetizacao
+		summarizeBy: sum
+		sourceColumn: taxa_alfabetizacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column media_portugues
+		dataType: double
+		lineageTag: 008a06b7-2d98-4e85-b7d7-5cad2cfba8b5
+		sourceLineageTag: media_portugues
+		summarizeBy: sum
+		sourceColumn: media_portugues
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_indicador_municipio = entity
+		mode: directLake
+		source
+			entityName: gold_indicador_municipio
+			expressionSource: 'DirectLake - lh_tc2_alfabetizacao'
+

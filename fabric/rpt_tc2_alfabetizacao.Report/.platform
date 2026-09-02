@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "rpt_tc2_alfabetizacao"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "db631b35-18a7-a072-4d5a-10e1160dc106"
+  }
+}

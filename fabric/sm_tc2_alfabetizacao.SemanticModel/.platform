@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm_tc2_alfabetizacao"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ba6b0fb9-7d5d-983e-4999-f63484d930f5"
+  }
+}

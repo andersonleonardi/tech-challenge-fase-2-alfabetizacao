@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_tc2_simular_streaming"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "613a738e-a2d7-a004-4015-060468dde3e0"
+  }
+}

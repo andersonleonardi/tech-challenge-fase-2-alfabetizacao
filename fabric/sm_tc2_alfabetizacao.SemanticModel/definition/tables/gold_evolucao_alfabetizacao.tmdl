@@ -1,0 +1,97 @@
+table gold_evolucao_alfabetizacao
+	lineageTag: 07268242-b4c3-44b6-b19d-fcbf17912d37
+	sourceLineageTag: [dbo].[gold_evolucao_alfabetizacao]
+
+	column id_municipio
+		dataType: string
+		lineageTag: 0369fdb1-1f6c-4f8f-94d2-c28f532a786b
+		sourceLineageTag: id_municipio
+		summarizeBy: none
+		sourceColumn: id_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_municipio
+		dataType: string
+		lineageTag: fe87b96f-09ca-4be1-aa80-f86e00724475
+		sourceLineageTag: nome_municipio
+		summarizeBy: none
+		sourceColumn: nome_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column sigla_uf
+		dataType: string
+		lineageTag: 95576785-4105-468e-bcfb-bc6c562db3a1
+		sourceLineageTag: sigla_uf
+		summarizeBy: none
+		sourceColumn: sigla_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_uf
+		dataType: string
+		lineageTag: 0568afa3-0f33-4825-a06e-08f1008a2d93
+		sourceLineageTag: nome_uf
+		summarizeBy: none
+		sourceColumn: nome_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_regiao
+		dataType: string
+		lineageTag: 255451b3-e672-4153-b782-82308e90573a
+		sourceLineageTag: nome_regiao
+		summarizeBy: none
+		sourceColumn: nome_regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxa_alfabetizacao_2023
+		dataType: double
+		lineageTag: 502abe80-2092-4b9b-9f78-e3aaa2a6d922
+		sourceLineageTag: taxa_alfabetizacao_2023
+		summarizeBy: sum
+		sourceColumn: taxa_alfabetizacao_2023
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column taxa_alfabetizacao_2024
+		dataType: double
+		lineageTag: f07fa11b-46af-408e-883a-8faa36ea3f70
+		sourceLineageTag: taxa_alfabetizacao_2024
+		summarizeBy: sum
+		sourceColumn: taxa_alfabetizacao_2024
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column variacao_pp
+		dataType: double
+		lineageTag: 3a10dbea-edb0-4490-bc7d-a5858a25a894
+		sourceLineageTag: variacao_pp
+		summarizeBy: sum
+		sourceColumn: variacao_pp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column situacao_evolucao
+		dataType: string
+		lineageTag: 38e6532a-1dff-4399-92f6-c3b77248cdfd
+		sourceLineageTag: situacao_evolucao
+		summarizeBy: none
+		sourceColumn: situacao_evolucao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_evolucao_alfabetizacao = entity
+		mode: directLake
+		source
+			entityName: gold_evolucao_alfabetizacao
+			expressionSource: 'DirectLake - lh_tc2_alfabetizacao'
+

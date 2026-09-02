@@ -1,0 +1,483 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@createArray(\n    'alunos',\n    'dicionario',\n    'municipio',\n    'uf',\n    'meta_alfabetizacao_brasil',\n    'meta_alfabetizacao_uf',\n    'meta_alfabetizacao_municipio'\n)",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "GoogleBigQuerySource",
+                  "datasetSettings": {
+                    "type": "GoogleBigQueryObject",
+                    "typeProperties": {
+                      "table": {
+                        "value": "@item()",
+                        "type": "Expression"
+                      },
+                      "dataset": "basedosdados.br_inep_avaliacao_alfabetizacao"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "2dbe13fd-6bf3-4cd5-bd30-2fe68eaa5fa8"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "ParquetSink",
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings",
+                    "enableVertiParquet": true
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings"
+                  },
+                  "datasetSettings": {
+                    "type": "Parquet",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": {
+                          "value": "@concat('bronze/', item())",
+                          "type": "Expression"
+                        },
+                        "fileName": {
+                          "value": "@concat(item(), '.parquet')",
+                          "type": "Expression"
+                        }
+                      },
+                      "compressionCodec": "snappy"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "lh_tc2_alfabetizacao",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "1a2c5d18-49a2-a06e-4bd8-197f017d68f6",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy Tabela to Bronze",
+              "description": "Copiar Tabelas da Origem (Google BigQuery / basedosdados / br_inep_avaliacao_alfabetizacao / [Todas as tabelas]) Para a camada Brozne",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach Tabelas Batch",
+        "description": "Estrutura para percorrer as tabelas da Origem",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "GoogleBigQuerySource",
+            "datasetSettings": {
+              "type": "GoogleBigQueryObject",
+              "typeProperties": {
+                "table": "municipio",
+                "dataset": "basedosdados.br_bd_diretorios_brasil"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "2dbe13fd-6bf3-4cd5-bd30-2fe68eaa5fa8"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": "bronze/diretorio_municipio",
+                  "fileName": "diretorio_municipio.parquet"
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lh_tc2_alfabetizacao",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "1a2c5d18-49a2-a06e-4bd8-197f017d68f6",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "id_municipio",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_municipio",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_municipio_6",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_municipio_6",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_municipio_tse",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_municipio_tse",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_municipio_rf",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_municipio_rf",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_municipio_bcb",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_municipio_bcb",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "capital_uf",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "capital_uf",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_comarca",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_comarca",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_regiao_saude",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_regiao_saude",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_regiao_saude",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_regiao_saude",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_regiao_imediata",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_regiao_imediata",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_regiao_imediata",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_regiao_imediata",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_regiao_intermediaria",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_regiao_intermediaria",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_regiao_intermediaria",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_regiao_intermediaria",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_microrregiao",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_microrregiao",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_microrregiao",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_microrregiao",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_mesorregiao",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_mesorregiao",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_mesorregiao",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_mesorregiao",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_regiao_metropolitana",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_regiao_metropolitana",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_regiao_metropolitana",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_regiao_metropolitana",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "ddd",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ddd",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "id_uf",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "id_uf",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "sigla_uf",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "sigla_uf",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_uf",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_uf",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "nome_regiao",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "nome_regiao",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "amazonia_legal",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "amazonia_legal",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "centroide",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "centroide",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy Diretorio Municipio to Bronze",
+        "description": "Copiar dados da Origem (Google BigQuery / basedosdados / br_bd_diretorios_brasil / municipio) Para a camada Brozne",
+        "dependsOn": [
+          {
+            "activity": "ForEach Tabelas Batch",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

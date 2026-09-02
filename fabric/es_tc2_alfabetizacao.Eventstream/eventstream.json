@@ -1,0 +1,57 @@
+{
+  "sources": [
+    {
+      "id": "4b79c6fd-0d91-4022-973b-939bba052045",
+      "name": "src_stream_alfabetizacao",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "fe059d5a-f259-4159-b7d2-f49c13308e6d",
+      "name": "lh_tc2_alfabetizacao",
+      "type": "Lakehouse",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "1a2c5d18-49a2-a06e-4bd8-197f017d68f6",
+        "schema": "",
+        "deltaTable": "bronze_streaming_simulado",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "es_tc2_alfabetizacao-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "es_tc2_alfabetizacao-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "5daffcff-5ede-4812-88d1-33639a69b7cd",
+      "name": "es_tc2_alfabetizacao-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "src_stream_alfabetizacao"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

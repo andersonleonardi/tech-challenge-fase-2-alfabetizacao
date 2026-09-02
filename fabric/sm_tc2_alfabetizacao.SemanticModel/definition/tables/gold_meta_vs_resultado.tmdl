@@ -1,0 +1,107 @@
+table gold_meta_vs_resultado
+	lineageTag: aa6b8019-3c4c-48fd-9d3a-f6e0202a45af
+	sourceLineageTag: [dbo].[gold_meta_vs_resultado]
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 6bea6bcd-ea01-46c5-80f6-a68b3a86914f
+		sourceLineageTag: ano
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_municipio
+		dataType: string
+		lineageTag: 6d9946f2-b724-488e-afd0-61ee0e2f17ff
+		sourceLineageTag: id_municipio
+		summarizeBy: none
+		sourceColumn: id_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_municipio
+		dataType: string
+		lineageTag: 09c2e9a9-9284-4ee2-bb32-eb6a169fb4cf
+		sourceLineageTag: nome_municipio
+		summarizeBy: none
+		sourceColumn: nome_municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column sigla_uf
+		dataType: string
+		lineageTag: 6c30ed50-3a74-4cd2-a9f3-18d690560839
+		sourceLineageTag: sigla_uf
+		summarizeBy: none
+		sourceColumn: sigla_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_uf
+		dataType: string
+		lineageTag: 6f42381d-7a3f-45d7-8415-8e0c9584b20b
+		sourceLineageTag: nome_uf
+		summarizeBy: none
+		sourceColumn: nome_uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_regiao
+		dataType: string
+		lineageTag: 1a72e93a-102f-499e-a3ba-af1cffd2c5eb
+		sourceLineageTag: nome_regiao
+		summarizeBy: none
+		sourceColumn: nome_regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column resultado_alfabetizacao
+		dataType: double
+		lineageTag: 56d7bb00-67f8-44c9-9e0b-9a7b9ebb30a6
+		sourceLineageTag: resultado_alfabetizacao
+		summarizeBy: sum
+		sourceColumn: resultado_alfabetizacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meta_alfabetizacao
+		dataType: double
+		lineageTag: 8d89da17-f576-4f8b-8fe4-4bb06c95edbb
+		sourceLineageTag: meta_alfabetizacao
+		summarizeBy: sum
+		sourceColumn: meta_alfabetizacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column diferenca_meta
+		dataType: double
+		lineageTag: 9f14acb4-2d15-465b-bd65-8a2a508737a8
+		sourceLineageTag: diferenca_meta
+		summarizeBy: sum
+		sourceColumn: diferenca_meta
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column situacao_meta
+		dataType: string
+		lineageTag: 95c8b8a5-cb6d-4901-8d06-3472602b3bec
+		sourceLineageTag: situacao_meta
+		summarizeBy: none
+		sourceColumn: situacao_meta
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_meta_vs_resultado = entity
+		mode: directLake
+		source
+			entityName: gold_meta_vs_resultado
+			expressionSource: 'DirectLake - lh_tc2_alfabetizacao'
+

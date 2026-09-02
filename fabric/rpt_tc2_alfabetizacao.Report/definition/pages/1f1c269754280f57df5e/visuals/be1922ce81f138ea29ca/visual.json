@@ -1,0 +1,151 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "be1922ce81f138ea29ca",
+  "position": {
+    "x": 916,
+    "y": 778,
+    "z": 5,
+    "height": 276,
+    "width": 960,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_evolucao_alfabetizacao"
+                    }
+                  },
+                  "Property": "situacao_evolucao"
+                }
+              },
+              "queryRef": "gold_evolucao_alfabetizacao.situacao_evolucao",
+              "nativeQueryRef": "Contagem de situacao_evolucao",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold_evolucao_alfabetizacao"
+                        }
+                      },
+                      "Property": "id_municipio"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Count(gold_evolucao_alfabetizacao.id_municipio)",
+              "nativeQueryRef": "Contagem de id_municipio1"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "gold_evolucao_alfabetizacao"
+                      }
+                    },
+                    "Property": "id_municipio"
+                  }
+                },
+                "Function": 2
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Evolução da alfabetização | 2023 → 2024'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b76484caf93a015543f2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_evolucao_alfabetizacao"
+              }
+            },
+            "Property": "situacao_evolucao"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ceabf3620b695ac6a298",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold_evolucao_alfabetizacao"
+                  }
+                },
+                "Property": "id_municipio"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
