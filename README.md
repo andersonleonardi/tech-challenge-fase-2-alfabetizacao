@@ -520,25 +520,28 @@ um modelo analítico mais abrangente.
 
 ## 12. Estrutura do Repositório
 
-O repositório foi organizado separando os principais artefatos da solução
-por responsabilidade.
+O repositório foi integrado ao Microsoft Fabric e contém os artefatos da
+solução versionados diretamente a partir do workspace.
 
+A estrutura principal do projeto é:
+
+```text
 tech-challenge-fase-2-alfabetizacao/
 │
-├── data_quality/
-│   └── Evidências e artefatos relacionados às validações de qualidade
-│
-├── docs/
-│   └── Documentação, diagramas e evidências da solução
-│
-├── notebooks/
-│   └── Notebooks utilizados no processamento e simulação dos dados
-│
-├── pipelines/
-│   └── Artefatos e documentação relacionados aos pipelines de ingestão
+├── fabric/
+│   ├── es_tc2_alfabetizacao.Eventstream/
+│   ├── lakehouse_optimization_*/
+│   ├── lh_tc2_alfabetizacao.Lakehouse/
+│   ├── nb_tc2_bronze_to_silver.Notebook/
+│   ├── nb_tc2_silver_to_gold.Notebook/
+│   ├── nb_tc2_simular_streaming.Notebook/
+│   ├── pl_tc2_ingestao_batch.DataPipeline/
+│   ├── rpt_tc2_alfabetizacao.Report/
+│   ├── sm_tc2_alfabetizacao.SemanticModel/
+│   └── Readme.md
 │
 └── README.md
-    └── Documentação principal do projeto
+```
 
 ## 13. Como Executar
 
