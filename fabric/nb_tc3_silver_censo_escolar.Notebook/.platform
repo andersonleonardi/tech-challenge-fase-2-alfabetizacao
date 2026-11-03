@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_tc3_silver_censo_escolar"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "708212f0-316d-b68c-42a8-2c5abc40b918"
+  }
+}

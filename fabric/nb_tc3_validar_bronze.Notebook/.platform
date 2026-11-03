@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_tc3_validar_bronze"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0184de25-366f-b069-4838-4f7d50a908b8"
+  }
+}
