@@ -29,12 +29,13 @@ from pyspark.sql import functions as F
 
 
 def configuracao_ano(ano):
-    expectativas = {2022: 105360, 2023: 103785}
+    expectativas = {2022: 105360, 2023: 103785, 2024: 103114}
     if ano not in expectativas:
-        raise ValueError("Esta etapa contempla somente 2022 e 2023")
+        raise ValueError("Esta etapa contempla somente 2022, 2023 e 2024")
     return {
         "ano": ano,
         "caminho": (
+            "Files/bronze/censo_escolar_2024/*.csv" if ano == 2024 else
             f"Files/bronze/censo_escolar_{ano}/"
             f"{ano}_microdados_ed_basica.csv"
         ),
@@ -275,12 +276,12 @@ def processar_anos(spark, anos, *, habilitar_persistencia=False):
 # CELL ********************
 
 # Executar após a célula de definições; não depende de execução de outro ano.
-# Primeira execução: manter False e revisar os relatórios de ambos os anos.
+# Primeira execução: manter False e revisar os relatórios de todos os anos.
 # Somente após aprovação, alterar explicitamente para True para regravar as
 # tabelas anuais existentes. A validação obrigatória será executada novamente.
 resultados = processar_anos(
     spark,
-    anos=(2022, 2023),
+    anos=(2022, 2023, 2024),
     habilitar_persistencia=False,
 )
 
